@@ -7,8 +7,13 @@ class User {
         return db.select(...fields).from('users');
     }
 
-    static create({ name }) {
-        return db('users').insert({ name, createdAt: new Date() });
+    static create(user) {
+        return db('users').insert({ ...user, passwordHash}, ...fields);
+    }
+
+    static authenticate({ name, password }) {
+        let passwordHash;
+        return db('users').where({ name, passwordHash }).select(...fields);
     }
 }
 
