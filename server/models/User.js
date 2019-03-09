@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const uuidv2 = require('uuid');
 const jwt = require('jsonwebtoken');
 
-const fields = ['id', 'name'];
+const fields = ['id', 'name', 'createdAt'];
 const SECRET = 'sfdsfsfsfs';
 
 const getRandomString = (length) => {

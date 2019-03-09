@@ -7,7 +7,7 @@ exports.up = async function(knex) {
         table.string('salt');
         table.string('password_hash');
         table.text('bio');
-        table.timestamps();
+        table.timestamps(false, true);
     });
 
     await knex.schema.createTable('events', (table) => {
@@ -16,7 +16,7 @@ exports.up = async function(knex) {
         table.datetime('end');
         table.uuid('user_id');
         table.foreign('user_id').references('users.id');
-        table.timestamps();
+        table.timestamps(false, true);
     });
 
     await knex.schema.createTable('games', (table) => {
@@ -24,7 +24,7 @@ exports.up = async function(knex) {
         table.string('name');
         table.string('publisher');
         table.binary('image');
-        table.timestamps();
+        table.timestamps(false, true);
     });
 
     await knex.schema.createTable('venues', (table) => {
@@ -32,7 +32,7 @@ exports.up = async function(knex) {
         table.string('name');
         table.string('publisher');
         table.specificType('geo', 'POINT');
-        table.timestamps();
+        table.timestamps(false, true);
     });
 
     await knex.schema.createTable('games_events', (table) => {

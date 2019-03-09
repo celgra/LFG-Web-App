@@ -4,7 +4,7 @@
             <p class="panel-heading">Users</p>
             {{#each model as |item|}}
                 <div class="panel-block is- is-space-evenly">
-                    <span>{{item.id}}</span><span>{{item.name}}</span>
+                    <span>{{item.id}}</span><span>{{item.name}}</span><span>{{date item.createdAt}}</span>
                 </div>
             {{/each}}
         </nav>
