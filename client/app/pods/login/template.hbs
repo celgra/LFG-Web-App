@@ -10,7 +10,7 @@
                     <label for="" class="label">Password</label>
                     <div class="control">{{input value=this.userPassword type="text" class="input" placeholder="Password"}}</div>
                 </div>
-                <div class="field login-btn-container" style="height: 60px;">
+                <div class="field login-btn-container">
                     <div class="control w-100"><button {{action "login"}} class="button is-primary is-fullwidth">Log In</button></div>
                     {{#if this.session.isAuthenticated}}
                         Logged in!

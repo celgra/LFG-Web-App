@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import axios from 'axios';
 import { action } from '@ember-decorators/object';
 import { inject as service } from '@ember-decorators/service';
 
@@ -18,7 +17,6 @@ export default class LoginController extends Controller {
                 this.userPassword
             );
         } catch (error) {
-            console.warn(error);
             this.set('errorMessage', error);
         }  
     }
