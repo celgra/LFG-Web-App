@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { inject as service } from '@ember-decorators/service';
 import { pluralize } from 'ember-inflector';
 
 import axios from 'axios';
@@ -6,10 +7,24 @@ import axios from 'axios';
 export default class StoreService extends Service {
     urlRoot = 'api/';
 
+    @service session;
+
+    getReqConfig() {
+        if (this.session.isAuthenticated) {
+            return { 
+                headers: {
+                'x-auth': this.session.data.authenticated.token
+                }
+            };
+        } else {
+            return {};
+        }
+    }
+
     async find(model, id) {
         try {
             let resourcePath = pluralize(model);
-            let response = await axios.get(`${this.urlRoot}${resourcePath}/${id}`);
+            let response = await axios.get(`${this.urlRoot}${resourcePath}/${id}`, this.getReqConfig());
             return response.data;
         } catch (error) {
             throw error;
@@ -28,7 +43,7 @@ export default class StoreService extends Service {
             }, initialValue);
             
             let queryParams = encodeURI(queryString)
-            let response = await axios.get(`${this.urlRoot}${resourcePath}${queryParams}`);
+            let response = await axios.get(`${this.urlRoot}${resourcePath}${queryParams}`, this.getReqConfig());
             return response.data;
         } catch (error) {
             throw error;
@@ -38,7 +53,7 @@ export default class StoreService extends Service {
     async create(model, data) {
         try {
             let resourcePath = pluralize(model);
-            let response = await axios.post(`${this.urlRoot}${resourcePath}`, data);
+            let response = await axios.post(`${this.urlRoot}${resourcePath}`, data, this.getReqConfig());
             return response.data;
         } catch (error) {
             throw error;
@@ -48,7 +63,7 @@ export default class StoreService extends Service {
     async update(model, id, data) {
         try {
             let resourcePath = pluralize(model);
-            let response = await axios.patch(`${this.urlRoot}${resourcePath}/${id}`, data);
+            let response = await axios.patch(`${this.urlRoot}${resourcePath}/${id}`, data, this.getReqConfig());
             return response.data;
         } catch (error) {
             throw error;
@@ -58,7 +73,7 @@ export default class StoreService extends Service {
    async delete(model, id) {
        try {
         let resourcePath = pluralize(model);
-        let response = await axios.delete(`${this.urlRoot}${resourcePath}/${id}`);
+        let response = await axios.delete(`${this.urlRoot}${resourcePath}/${id}`, this.getReqConfig());
         return response.data;
        } catch (error) {
            throw error;
