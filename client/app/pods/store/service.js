@@ -4,7 +4,7 @@ import { pluralize } from 'ember-inflector';
 import axios from 'axios';
 
 export default class StoreService extends Service {
-    urlRoot = '/api/';
+    urlRoot = 'api/';
 
     async find(model, id) {
         try {

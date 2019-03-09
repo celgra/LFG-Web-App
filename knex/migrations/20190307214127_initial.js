@@ -4,6 +4,7 @@ exports.up = async function(knex) {
         table.uuid('id').primary();
         table.string('name');
         table.string('email').unique();
+        table.string('salt');
         table.string('password_hash');
         table.text('bio');
         table.timestamps();
@@ -22,6 +23,7 @@ exports.up = async function(knex) {
         table.uuid('id').primary();
         table.string('name');
         table.string('publisher');
+        table.binary('image');
         table.timestamps();
     });
 

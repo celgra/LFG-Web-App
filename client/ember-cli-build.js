@@ -4,7 +4,12 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    sassOptions: {
+      includePaths: [
+        'node_modules/bulma',
+        'node_modules/bulmaswatch/darkly'
+      ]
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

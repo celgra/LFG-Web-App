@@ -1,2 +1,31 @@
-{{link-to "About" "about"}}
-{{outlet}}
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">
+        </div>
+        <a class="navbar-burger burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                {{link-to "Home" "home" class="navbar-item"}}
+            </div>
+            <div class="navbar-end">
+                {{#if session.isAuthenticated}}
+                    <div class="buttons">
+                        <button class="button is-danger" {{action "logOut"}}>Log Out</button>
+                    </div>
+                {{else}}
+                <div class="buttons">
+                        {{link-to "Sign up" "signup" class="button is-primary"}}
+                        {{link-to "Log-in" "login" class="button is-light"}}
+                    </div>
+                {{/if}}
+            </div> 
+        </div>
+    </div>
+</nav>
+<div class={{routeStyleNamespaceClassSet}}>
+    {{outlet}}
+</div>
