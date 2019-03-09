@@ -16,6 +16,12 @@ export default class LoginController extends Controller {
                 this.userName, 
                 this.userPassword
             );
+
+            this.setProperties({
+                userName: '',
+                userPassword: '',
+                errorMessage: ''
+            });
         } catch (error) {
             this.set('errorMessage', error);
         }  
