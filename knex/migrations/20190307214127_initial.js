@@ -21,8 +21,8 @@ exports.up = async function(knex) {
     await knex.schema.createTable('venues', (table) => {
         table.uuid('id').primary();
         table.string('name');
-        table.string('publisher');
         table.string('address');
+        table.string('city');
         table.string('state');
         table.string('country');
         table.string('zipcode');

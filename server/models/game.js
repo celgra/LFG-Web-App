@@ -1,7 +1,7 @@
 const db = require('../database');
 const { find, findAll } = require('../database/helpers');
 
-const fields = ['name', 'publisher', 'image'];
+const fields = ['id', 'name', 'publisher', 'image'];
 
 class Game {
     static async findAll(count, page = 1) {

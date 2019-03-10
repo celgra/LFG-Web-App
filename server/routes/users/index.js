@@ -5,7 +5,8 @@ const User = require('../../models/user');
 
 router.get('/', async (req, res) => {
     try {
-        let users = await User.findAll();
+        let { count, page } = req.query;
+        let users = await User.findAll(count, page);
         res.send(users);
     } catch (error) {
         res.status(500).send(error);

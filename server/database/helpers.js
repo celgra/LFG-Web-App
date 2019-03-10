@@ -1,12 +1,12 @@
-
+//simple helpers for CRUD (WIP)
 const findAll = async (db, table, { fields, count, page }) => {
     try {
         if (count) {
-            let offset = page > 1 ? page * count : count;
+            let offset = page ? (page - 1) * count : 0;
 
             let tablePage =  await db(table).limit(count).offset(offset)
                 .orderBy(fields[0]).select(fields);
-            let rows = await db('games').count();
+            let rows = await db(table).count();
             let totalCount = parseInt(rows[0].count);
             let obj = { page, totalCount };
             obj[table] = tablePage;

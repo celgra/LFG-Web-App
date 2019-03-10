@@ -1,22 +1,22 @@
 const express = require('express')
 const router = express.Router();
 
-const Game = require('../../models/game');
+const Venue = require('../../models/venue');
 
 router.get('/', async (req, res) => {
     try {
         let { count, page } = req.query;
-        let games = await Game.findAll(count, page);
-        res.send({ games });
+        let venues = await Venue.findAll(count, page);
+        res.send(venues);
     } catch (error) {
-        res.status(500).send();
+        res.status(500).send(error);
     }
 });
 
 router.get('/:id', async (req, res) => {
     try {
-        let game = await Game.find(res.params.id);
-        res.send(game);
+        let venue = await Venue.find(res.params.id);
+        res.send(venue);
     } catch (error) {
     res.status(500).send(error)
     }

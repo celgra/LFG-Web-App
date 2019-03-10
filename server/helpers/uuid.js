@@ -1,3 +1,3 @@
-const uuidv2 = require('uuid');
+const uuidv1 = require('uuid/v1');
 
-module.exports = uuidv2;
+module.exports = uuidv1;
