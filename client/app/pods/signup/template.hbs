@@ -1,0 +1,40 @@
+<section class="section h-100">
+    <div class="container h-100">
+        <div class="columns is-centered is-vcentered h-100">
+            <form class="column is-one-third">
+                <div class="field">
+                    <label for="" class="label">Username</label>
+                    <div class="control">{{input value=this.userName type="text" class="input" placeholder="Username"}}</div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Email</label>
+                    <div class="control">{{input value=this.email type="email" class="input" placeholder="Username"}}</div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Password</label>
+                    <div class="control">{{input value=this.userPassword type="text" class="input" placeholder="Password"}}</div>
+                </div>
+                <div class="field">
+                    <label for="" class="label">Confirm Password</label>
+                    <div class="control">{{input value=this.userPasswordConfirmation type="text" class="input" placeholder="Confirm Password"}}</div>
+                </div>
+                <div class="field login-btn-container">
+                    <div class="control w-100">
+                        <button 
+                            {{action "signUp"}} 
+                            disabled={{unless this.passwordConfirmationMatches false}} 
+                            class="button is-primary is-fullwidth">
+                            Sign Up
+                        </button>
+                    </div>
+                    {{#if this.session.isAuthenticated}}
+                        Account created!
+                    {{/if}}
+                    {{#if errorMessage}}
+                        {{errorMessage}}
+                    {{/if}}
+                </div>
+            </form>
+        </div>
+    </div> 
+</section>       
