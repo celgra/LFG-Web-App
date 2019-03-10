@@ -1,14 +1,26 @@
 <div class="section h-100">
     <div class="container h-100">
         {{#if model}}
-            <nav class="panel">
-                <p class="panel-heading">Users</p>
-                {{#each model as |item|}}
-                    <div class="panel-block is- is-space-evenly">
-                        <span>{{item.id}}</span><span>{{item.name}}</span><span>{{date item.createdAt}}</span>
-                    </div>
-                {{/each}}
-            </nav>
+            {{#each model as |event|}}
+                <div class="nice-pad media-border">
+                    <article class="media">
+                        <figure class="media-left">
+                            <p class="image is-64x64"><img src="" alt=""></p>
+                        </figure>
+                        <div class="media-content">
+                            <div class="content">
+                                <p><strong>{{event.player.name}}</strong></p>
+                                <p>
+                                    <small>{{event.venue.name}}</small>
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt neque dolorem iure, repellendus accusamus, saepe earum quibusdam voluptas, rerum beatae aliquam quis provident quisquam est cumque eveniet consequatur dignissimos explicabo?
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            {{/each}}
         {{else}}
             <div>No current users!</div>
         {{/if}}

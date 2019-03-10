@@ -1,6 +1,6 @@
 const db = require('../database');
 const crypto = require('crypto');
-const uuidv2 = require('uuid');
+const uuid = require('../helpers/uuid');
 const jwt = require('jsonwebtoken');
 
 const fields = ['id', 'name', 'createdAt'];
@@ -63,7 +63,7 @@ class User {
             let users = await db('users')
                 .returning(fields)
                 .insert({ 
-                    id: uuidv2(),
+                    id: uuid(),
                     name: userName, 
                     email, 
                     passwordHash, 

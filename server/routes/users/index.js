@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         let { user, token } = await User.create(req.body);
-        res.header('x-auth', token).send(user);
+        res.header('x-auth', token).status(201).send(user);
     } catch (error) {
         res.status(500).send(error);
     }

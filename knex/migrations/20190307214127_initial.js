@@ -10,15 +10,6 @@ exports.up = async function(knex) {
         table.timestamps(false, true);
     });
 
-    await knex.schema.createTable('events', (table) => {
-        table.uuid('id').primary();
-        table.datetime('start');
-        table.datetime('end');
-        table.uuid('user_id');
-        table.foreign('user_id').references('users.id');
-        table.timestamps(false, true);
-    });
-
     await knex.schema.createTable('games', (table) => {
         table.uuid('id').primary();
         table.string('name');
@@ -31,7 +22,22 @@ exports.up = async function(knex) {
         table.uuid('id').primary();
         table.string('name');
         table.string('publisher');
+        table.string('address');
+        table.string('state');
+        table.string('country');
+        table.string('zipcode');
         table.specificType('geo', 'POINT');
+        table.timestamps(false, true);
+    });
+
+    await knex.schema.createTable('events', (table) => {
+        table.uuid('id').primary();
+        table.datetime('start');
+        table.datetime('end');
+        table.uuid('user_id');
+        table.foreign('user_id').references('users.id');
+        table.uuid('venue_id');
+        table.foreign('venue_id').references('venues.id');
         table.timestamps(false, true);
     });
 
@@ -46,9 +52,9 @@ exports.up = async function(knex) {
 
 exports.down = async function(knex) {
     await knex.schema.dropTable('games_events');
+    await knex.schema.dropTable('events');
     await knex.schema.dropTable('venues');
     await knex.schema.dropTable('games');
-    await knex.schema.dropTable('events');
     await knex.schema.dropTable('users');
 }
   
