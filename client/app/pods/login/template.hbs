@@ -7,11 +7,27 @@
                     <div class="control">{{input value=this.userName type="text" class="input" placeholder="Username"}}</div>
                 </div>
                 <div class="field">
-                    <label for="" class="label">Password</label>
-                    <div class="control">{{input value=this.userPassword type="text" class="input" placeholder="Password"}}</div>
+                    <label for="password" class="label">Password</label>
+                    <div class="control">
+                        {{input 
+                            value=this.userPassword 
+                            type="text" 
+                            class="input" 
+                            name="password" 
+                            placeholder="Password"
+                        }}
+                    </div>
                 </div>
                 <div class="field login-btn-container">
-                    <div class="control w-100"><button {{action "login"}} class="button is-primary is-fullwidth">Log In</button></div>
+                    <div class="control w-100">
+                        <button 
+                            {{action this.login}} 
+                            class="button is-primary is-fullwidth"
+                            disabled={{if formIsEmpty true}}
+                        >
+                                Log In
+                            </button>
+                    </div>
                     {{#if this.session.isAuthenticated}}
                         Logged in!
                     {{/if}}

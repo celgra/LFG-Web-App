@@ -1,4 +1,5 @@
 import Base from 'ember-simple-auth/authenticators/base';
+import { Promise } from 'rsvp';
 import axios from 'axios';
 
 export default class CustomAuthenticator extends Base {

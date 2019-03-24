@@ -26,7 +26,7 @@ exports.up = async function(knex) {
         table.string('state');
         table.string('country');
         table.string('zipcode');
-        table.specificType('geo', 'POINT');
+        table.specificType('geo', 'geometry');
         table.timestamps(false, true);
     });
 

@@ -1,0 +1,24 @@
+<div class="modal is-active">
+    {{#link-to "home"}}
+        <div class="modal-background"></div>
+    {{/link-to}}
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+                {{#leaflet-map lat=this.geo.lat lng=this.geo.lng zoom=15 as |layers|}}
+                    {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+                        {{#layers.marker location=(hash lat=this.geo.lat lng=this.geo.lng) as |marker|}}
+                            {{#marker.popup}}
+                                <h3>{{model.name}}</h3>
+                                {{model.address}}<br>
+                                {{model.city}},{{model.state}} {{model.zipcode}}
+                            {{/marker.popup}}
+                        {{/layers.marker}}
+                {{/leaflet-map}}
+            </div>
+        </div>
+    </div>
+    {{#link-to "home"}}
+        <button class="modal-close is-large" aria-label="close"></button>
+    {{/link-to}}
+</div>

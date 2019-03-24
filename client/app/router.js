@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('home', { path: '/' });
+  this.route('home', { path: '/' }, function() {
+    this.route('map', { path: '/map/:venueId' });
+  });
   this.route('signup');
   this.route('login');
 });

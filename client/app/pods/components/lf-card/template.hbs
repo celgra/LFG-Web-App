@@ -1,0 +1,34 @@
+<header class="card-header">
+    <p class="card-header-title">
+    {{@event.player.name}}
+    </p>
+    {{#if (gt event.games.length 3)}}
+        <a {{action "toggleShowMore"}} class="card-header-icon" aria-label="more options">
+            <span class="icon">
+                {{#if showMore}}
+                    {{fa-icon "angle-down"}}
+                {{else}}
+                    {{fa-icon "angle-up"}}
+                {{/if}}
+            </span>
+        </a>
+    {{/if}}
+</header>
+<div class="card-content">
+    <div class="columns">
+        <span class="column">
+            <small>{{@event.venue.name}} -- {{@event.venue.location}}</small>  
+            {{#link-to "home.map" @event.venue.id}}
+                &nbsp;{{fa-icon "map-marked"}}
+            {{/link-to}}
+        </span>
+    </div>
+    <div class="columns is-space-evenly">
+        <span>Games</span>
+    </div>
+    <div class="columns is-multiline is-space-between">
+        {{#each this.gamesToDisplay as |game|}}
+            <div class="column is-4">{{game.name}}</div>
+        {{/each}}
+    </div>
+</div>

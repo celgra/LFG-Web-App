@@ -2,6 +2,7 @@ const db = require('../database');
 const crypto = require('crypto');
 const uuid = require('../helpers/uuid');
 const jwt = require('jsonwebtoken');
+const isEmpty = require('lodash/isEmpty');
 
 const fields = ['id', 'name', 'createdAt'];
 const SECRET = 'sfdsfsfsfs';
@@ -59,13 +60,16 @@ class User {
 
     static async create({ userName, email, userPassword }) {
         try {
+            if (isEmpty(userName) || isEmpty(email) || isEmpty(userPassword)) {
+                throw Error('User registration form was not complete');
+            }
             let { passwordHash, salt } = saltHashPassword(userPassword);
             let users = await db('users')
                 .returning(fields)
                 .insert({ 
                     id: uuid(),
                     name: userName, 
-                    email, 
+                    email: email, 
                     passwordHash, 
                     salt
                 });
@@ -78,6 +82,9 @@ class User {
 
     static async authenticate({ userName, userPassword }) {
         try {
+            if (isEmpty(userName) || isEmpty(userPassword)) {
+                throw Error('User sign-in form was not complete');
+            }
             let users = await db('users')
                 .where({ name: userName })
                 .select();

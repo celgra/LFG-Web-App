@@ -8,7 +8,7 @@
                 </div>
                 <div class="field">
                     <label for="" class="label">Email</label>
-                    <div class="control">{{input value=this.email type="email" class="input" placeholder="Username"}}</div>
+                    <div class="control">{{input value=this.email type="email" class="input" placeholder="Email"}}</div>
                 </div>
                 <div class="field">
                     <label for="" class="label">Password</label>
@@ -16,13 +16,20 @@
                 </div>
                 <div class="field">
                     <label for="" class="label">Confirm Password</label>
-                    <div class="control">{{input value=this.userPasswordConfirmation type="text" class="input" placeholder="Confirm Password"}}</div>
+                    <div class="control">
+                        {{input 
+                            value=this.userPasswordConfirmation 
+                            type="text" 
+                            class=(concat "input" (unless this.passwordConfirmationMatches " is-danger" "") )
+                            placeholder="Confirm Password"
+                        }}
+                    </div>
                 </div>
                 <div class="field login-btn-container">
                     <div class="control w-100">
                         <button 
-                            {{action "signUp"}} 
-                            disabled={{unless this.passwordConfirmationMatches false}} 
+                            {{action this.signUp}} 
+                            disabled={{unless this.isFormValid true}} 
                             class="button is-primary is-fullwidth">
                             Sign Up
                         </button>

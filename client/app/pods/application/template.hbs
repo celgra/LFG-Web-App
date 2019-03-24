@@ -13,12 +13,35 @@
             </div>
             <div class="navbar-end">
                 {{#if session.isAuthenticated}}
-                    <div class="buttons">
-                        <button class="button is-danger" {{action "logOut"}}>Log Out</button>
+                    {{!-- <div class="buttons">
+                        <button class="button is-danger" {{action this.logOut}}>Log Out</button>
+                    </div> --}}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            User
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                About
+                            </a>
+                            <a class="navbar-item">
+                                Jobs
+                            </a>
+                            <a class="navbar-item">
+                                Contact
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Report an issue
+                            </a>
+                            <a class="navbar-item is-danger" {{action this.logOut}}>
+                                {{fa-icon "sign-out-alt" class="danger-red"}} &nbsp; Log Out
+                            </a>
+                        </div>
                     </div>
                 {{else}}
                     <div class="buttons">
-                        {{link-to "Sign up" "signup" class="button is-primary"}}
+                        {{link-to "Sign up" "signup" class="button is-secondary"}}
                         {{link-to "Log-in" "login" class="button is-light"}}
                     </div>
                 {{/if}}

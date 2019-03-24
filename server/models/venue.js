@@ -1,12 +1,23 @@
 const db = require('../database');
 const { find, findAll } = require('../database/helpers');
+const isArray = require('lodash/isArray');
 
-const fields = ['id', 'name', 'address', 'city', 'state', 'zipcode', 'geo'];
+const table = 'venues';
+const fields = ['id', 'name', 'address', 'city', 'state', 'zipcode', db.raw('ST_asGeoJSON(geo) geo')];
 
 class Venue {
     static async findAll(count, page = 1) {
         try {
-            let result = await findAll(db, 'venues', { count, page, fields });
+            let result = await findAll(db, table, { count, page, fields });
+            
+            if (!isArray(result)) {
+                result.venues = result.venues.map(venue => ({ ...venue, geo: JSON.parse(venue.geo) }));
+            } else {
+                result = {
+                    venues: result.map(venue => ({ ...venue, geo: JSON.parse(venue.geo) }))
+                };
+            }
+
             return result;
         } catch (error) {
             return Promise.reject(error);
@@ -15,8 +26,8 @@ class Venue {
 
     static async find(id) {
         try {
-            let result = await find(db, 'venues', { id, fields });
-            return games[0];
+            let result = await find(db, table, { id, fields });
+            return result;
         } catch (error) {
             return Promise.reject(error);
         }

@@ -1,4 +1,5 @@
 import Base from 'ember-simple-auth/authenticators/base';
+import { Promise } from 'rsvp';
 
 export default class OnCreationAuthenticator extends Base {
   restore(data) {
@@ -8,7 +9,7 @@ export default class OnCreationAuthenticator extends Base {
   }
 
   authenticate(...args) {
-    return new Promise( (resolve, reject) => {
+    return new Promise( (resolve) => {
         resolve({ user: args[0], token: args[1] });
     });
   }

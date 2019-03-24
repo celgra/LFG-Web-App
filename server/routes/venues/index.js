@@ -15,10 +15,11 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        let venue = await Venue.find(res.params.id);
+        let venue = await Venue.find(req.params.id);
+        venue = {...venue, geo: JSON.parse(venue.geo)};
         res.send(venue);
     } catch (error) {
-    res.status(500).send(error)
+        res.status(500).send(error)
     }
 });
 
