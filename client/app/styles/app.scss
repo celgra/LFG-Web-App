@@ -39,3 +39,18 @@ body > div.ember-view {
 .danger-red {
     color: $danger;
 }
+
+.custom-primary {
+    color: $primary;
+    &:hover {
+        color: #436d9a;
+    }
+}
+
+.is-hover {
+    cursor: pointer;
+}
+
+.is-100-width {
+    width: 100%;
+}

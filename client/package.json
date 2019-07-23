@@ -15,6 +15,7 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
+    "dev-start": "ember server --proxy http://localhost:3000",
     "test": "ember test"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "ember-cli-babel": "^7.1.2",
     "ember-cli-dependency-checker": "^3.1.0",
     "ember-cli-eslint": "^4.2.3",
+    "ember-cli-flash": "^1.7.1",
     "ember-cli-htmlbars": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.3",
     "ember-cli-inject-live-reload": "^1.8.2",
