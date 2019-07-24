@@ -14,6 +14,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        let user = await User.find(req.params.id);
+        res.send(user);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.post('/login', async (req, res) => {
     try {
         let body = pick(req.body, ['userName', 'userPassword']);

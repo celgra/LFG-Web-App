@@ -3,7 +3,7 @@
     {{@event.player.name}}
     </p>
     {{#if (gt event.games.length 3)}}
-        <a {{action "toggleShowMore"}} class="card-header-icon" aria-label="more options">
+        <a {{action this.toggleShowMore}} class="card-header-icon" aria-label="more options">
             <span class="icon">
                 {{#if showMore}}
                     {{fa-icon "angle-down"}}

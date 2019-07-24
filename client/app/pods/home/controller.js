@@ -18,7 +18,7 @@ export default class HomeController extends Controller {
             .getCurrentPosition((position) => this.processLocation(position));
           } else {
             this.flashMessages.add({
-                message: 'Geolocation feature is not avialable on your browser',
+                message: 'Geolocation feature is not avaliable on your browser',
                 class: 'notification is-danger'
               });
           }

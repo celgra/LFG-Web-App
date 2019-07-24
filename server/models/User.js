@@ -4,7 +4,7 @@ const uuid = require('../helpers/uuid');
 const jwt = require('jsonwebtoken');
 const isEmpty = require('lodash/isEmpty');
 
-const fields = ['id', 'name', 'createdAt'];
+const fields = ['id', 'name','bio', 'createdAt'];
 const SECRET = 'sfdsfsfsfs';
 
 const getRandomString = (length) => {
@@ -38,6 +38,19 @@ const generateToken = ({ id }, permissions) => {
 }
 
 class User {
+    static async find(id) {
+        try {
+            let users = await db.select(...fields).from('users');
+            if (users[0]) {
+                return Promise.resolve(users[0]);
+            } else {
+                return Promise.reject('User not found');
+            }
+        } catch (error) {
+            return Promise.reject(error);
+        }        
+    }
+
     static findAll() {
         return db.select(...fields).from('users');
     }

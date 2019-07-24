@@ -1,0 +1,12 @@
+<div>
+    Bio:
+    </div>
+    <div>
+        {{textarea value=bio}}
+    </div>
+    <button class="button is-danger" {{action this.toggleEdit}}>
+        {{fa-icon "times"}} &nbsp; Cancel
+    </button>
+    <button class="button is-primary" {{action this.save (hash bio=this.bio)}}>
+        {{fa-icon "save"}} &nbsp; Save
+    </button>
