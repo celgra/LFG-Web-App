@@ -5,8 +5,13 @@ const Event = require('../../models/event');
 
 router.get('/', async (req, res) => {
     try {
-        let events = await Event.findAll();
-        res.send(events);
+        if (req.query.page) {
+            let events = await Event.findAll(req.query.page);
+            res.send(events);
+        } else {
+            let events = await Event.findAll();
+            res.send(events);
+        }
     } catch (error) {
         res.status(500).send(error);
     }

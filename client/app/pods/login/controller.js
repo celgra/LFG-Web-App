@@ -7,7 +7,6 @@ export default class LoginController extends Controller {
     userName = '';
     userPassword = '';
 
-    @service store;
     @service session;
 
     @computed('userName', 'userPassword')

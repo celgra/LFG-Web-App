@@ -15,7 +15,7 @@ const fieldsToSelect = [
 ];
 
 class Event {
-    static async findAll(count = 10, page = 1) {
+    static async findAll(page = 1, count = 10) {
         try {
                 let offset = count * ( page - 1);
                 let rows = await db.select(fieldsToSelect).from(function () {

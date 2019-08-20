@@ -62,5 +62,6 @@
             {{/each}}
         </div>
     </div> 
+    <button disabled={{lt page 2}} {{action this.prevPage}}>Previous</button><button {{action this.nextPage}}>Next</button>
 </div>
 {{outlet}}

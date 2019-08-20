@@ -1,7 +1,13 @@
 import Route from '@ember/routing/route';
 
 export default class HomeRoute extends Route {
-    model() {
-        return this.store.query('events');
+    queryParams = {
+        page: {
+          refreshModel: true
+        }
+    };
+
+    model(params) {
+        return this.store.query('events', params);
     }
 }
