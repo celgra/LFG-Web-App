@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class HomeController extends Controller {
@@ -11,6 +11,12 @@ export default class HomeController extends Controller {
     processLocation(position) {
         let { latitude, longitude } = position.coords;
         this.set('location', { latitude, longitude });
+    }
+
+    @computed('model.totalCount')
+    get isNextDisabled() {
+        return (((this.page - 1) * 10) + this.model.events.length) >= 
+            this.model.totalCount;
     }
 
     @action

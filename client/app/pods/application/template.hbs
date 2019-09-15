@@ -12,7 +12,7 @@
                 {{link-to "Home" "home" class="navbar-item"}}
             </div>
             <div class="navbar-end">
-                {{#if session.isAuthenticated}}
+                {{#if this.session.isAuthenticated}}
                     {{!-- <div class="buttons">
                         <button class="button is-danger" {{action this.logOut}}>Log Out</button>
                     </div> --}}
@@ -52,7 +52,7 @@
         </div>
     </div>
 </nav>
-{{#each flashMessages.queue as |flash|}}
+{{#each this.flashMessages.queue as |flash|}}
   {{#flash-message flash=flash class=flash.class as |component flash|}}
     <p>{{flash.message}}</p>
   {{/flash-message}}

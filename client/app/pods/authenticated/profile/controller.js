@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service'
 import { action } from '@ember/object';
+import { task } from 'ember-concurrency';
 
 const editProfileForm = { bio: '' };
 
@@ -11,6 +12,22 @@ export default class AuthenticatedProfileController extends Controller {
     isInEditMode = false;
 
     editForm = { ...editProfileForm };
+
+    @task(function * (editForm) {
+        try {
+            yield this.store
+                .update(
+                    'users', 
+                    this.session.data.authenticated.user.id, 
+                    { ...editForm }
+            );
+            this.toggleEditMode();
+            this.set('model', { ...this.model, ...editForm });
+        } catch (error) {
+            this.toggleEditMode();
+            this.set('model', { ...this.model, ...editForm });
+        }
+    }) saveProfileTask;
 
     resetController() {
         this.set('editForm', { ...editProfileForm });
@@ -25,15 +42,7 @@ export default class AuthenticatedProfileController extends Controller {
     }
 
     @action
-    async saveProfile(editForm) {
-        try {
-            await this.store
-                .update('users', this.session.data.authenticated.user.id, { ...editForm });
-            this.toggleEditMode();
-            this.set('model', { ...this.model, ...editForm });
-        } catch (error) {
-            this.toggleEditMode();
-            this.set('model', { ...this.model, ...editForm });
-        }
+    saveProfile(editForm) {
+        this.saveProfileTask.perform(editForm);
     }
 }

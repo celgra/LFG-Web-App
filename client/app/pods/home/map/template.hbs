@@ -9,9 +9,9 @@
                     {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
                         {{#layers.marker location=(hash lat=this.geo.lat lng=this.geo.lng) as |marker|}}
                             {{#marker.popup}}
-                                <h3>{{model.name}}</h3>
-                                {{model.address}}<br>
-                                {{model.city}},{{model.state}} {{model.zipcode}}
+                                <h3>{{this.model.name}}</h3>
+                                {{this.model.address}}<br>
+                                {{this.model.city}},{{this.model.state}} {{this.model.zipcode}}
                             {{/marker.popup}}
                         {{/layers.marker}}
                 {{/leaflet-map}}

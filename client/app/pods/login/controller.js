@@ -8,6 +8,7 @@ export default class LoginController extends Controller {
     userPassword = '';
 
     @service session;
+    @service savedTransition;
 
     @computed('userName', 'userPassword')
     get formIsEmpty() {
@@ -27,7 +28,11 @@ export default class LoginController extends Controller {
                 userPassword: '',
                 errorMessage: ''
             });
-            this.transitionToRoute('home');
+            try {
+                await this.savedTransition.retryTranstiion();
+            } catch (error) {
+                this.transitionToRoute('home');
+            }
         } catch (error) {
             this.set('errorMessage', error);
         }  

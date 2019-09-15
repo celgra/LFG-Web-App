@@ -51,7 +51,7 @@
             </form>
         </div>
         <div class="columns is-space-evenly">
-            {{#each model.events as |event|}}
+            {{#each this.model.events as |event|}}
                 <div class="column is-half">
                     <LfCard @event={{event}} />
                 </div>
@@ -62,6 +62,7 @@
             {{/each}}
         </div>
     </div> 
-    <button disabled={{lt page 2}} {{action this.prevPage}}>Previous</button><button {{action this.nextPage}}>Next</button>
+    <button disabled={{lt page 2}} {{action this.prevPage}}>Previous</button>
+    <button disabled={{this.isNextDisabled}} {{action this.nextPage}}>Next</button>
 </div>
 {{outlet}}

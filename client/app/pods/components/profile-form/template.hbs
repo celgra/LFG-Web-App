@@ -2,11 +2,11 @@
     Bio:
     </div>
     <div>
-        {{textarea value=bio}}
+        <Textarea @value={{this.editedBio}}/>
     </div>
-    <button class="button is-danger" {{action this.toggleEdit}}>
+    <button class="button is-danger" {{action this.toggle}}>
         {{fa-icon "times"}} &nbsp; Cancel
     </button>
-    <button class="button is-primary" {{action this.save (hash bio=this.bio)}}>
+    <button class="button is-primary {{if loading "is-loading"}}" {{action this.save (hash bio=this.editedBio)}}>
         {{fa-icon "save"}} &nbsp; Save
     </button>
