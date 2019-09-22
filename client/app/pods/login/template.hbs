@@ -4,18 +4,26 @@
             <form class="column is-one-third">
                 <div class="field">
                     <label for="" class="label">Username</label>
-                    <div class="control">{{input value=this.userName type="text" class="input" placeholder="Username"}}</div>
+                    <div class="control">
+                        <input 
+                            {{on "input" (action loginForm.userName.set value="target.value")}} 
+
+                            type="text" 
+                            class="input" 
+                            placeholder="Username"
+                        >
+                    </div>
                 </div>
                 <div class="field">
                     <label for="password" class="label">Password</label>
                     <div class="control">
-                        {{input 
-                            value=this.userPassword 
+                        <input 
+                            {{on "input" (action loginForm.userPassword.set value="target.value")}} 
                             type="text" 
                             class="input" 
                             name="password" 
                             placeholder="Password"
-                        }}
+                        >
                     </div>
                 </div>
                 <div class="field login-btn-container">
@@ -31,8 +39,8 @@
                     {{#if this.session.isAuthenticated}}
                         Logged in!
                     {{/if}}
-                    {{#if errorMessage}}
-                        {{errorMessage}}
+                    {{#if this.loginForm.errorMessage.state}}
+                        {{this.loginForm.errorMessage.state}}
                     {{/if}}
                 </div>
             </form>

@@ -7,6 +7,9 @@
     <button class="button is-danger" {{action this.toggle}}>
         {{fa-icon "times"}} &nbsp; Cancel
     </button>
-    <button class="button is-primary {{if loading "is-loading"}}" {{action this.save (hash bio=this.editedBio)}}>
+    <button
+        class="button is-primary {{if loading "is-loading"}}" 
+        {{action this.save (hash bio=this.editedBio)}}
+    >
         {{fa-icon "save"}} &nbsp; Save
     </button>

@@ -4,25 +4,46 @@
             <form class="column is-one-third">
                 <div class="field">
                     <label for="" class="label">Username</label>
-                    <div class="control">{{input value=this.userName type="text" class="input" placeholder="Username"}}</div>
+                    <div class="control">
+                        <input
+                            {{on "input" (action this.signUpForm.userName.set value="target.value")}}
+                            type="text" 
+                            class="input" 
+                            placeholder="Username"
+                        >
+                    </div>
                 </div>
                 <div class="field">
                     <label for="" class="label">Email</label>
-                    <div class="control">{{input value=this.email type="email" class="input" placeholder="Email"}}</div>
+                    <div class="control">
+                        <input
+                            {{on "input" (action this.signUpForm.email.set value="target.value")}}
+                            type="text" 
+                            class="input" 
+                            placeholder="Email"
+                        >
+                    </div>
                 </div>
                 <div class="field">
                     <label for="" class="label">Password</label>
-                    <div class="control">{{input value=this.userPassword type="text" class="input" placeholder="Password"}}</div>
+                    <div class="control">
+                        <input
+                            {{on "input" (action this.signUpForm.userPassword.set value="target.value")}}
+                            type="text" 
+                            class="input" 
+                            placeholder="Password"
+                        >
+                    </div>
                 </div>
                 <div class="field">
                     <label for="" class="label">Confirm Password</label>
                     <div class="control">
-                        {{input 
-                            value=this.userPasswordConfirmation 
+                        <input
+                            {{on "input" (action this.signUpForm.userPasswordConfirmation.set value="target.value")}}
                             type="text" 
-                            class=(concat "input" (unless this.passwordConfirmationMatches " is-danger" "") )
+                            class="input" 
                             placeholder="Confirm Password"
-                        }}
+                        >
                     </div>
                 </div>
                 <div class="field login-btn-container">
@@ -37,8 +58,8 @@
                     {{#if this.session.isAuthenticated}}
                         Account created!
                     {{/if}}
-                    {{#if errorMessage}}
-                        {{errorMessage}}
+                    {{#if this.signUpForm.errorMessage}}
+                        {{this.signUpForm.errorMessage}}
                     {{/if}}
                 </div>
             </form>

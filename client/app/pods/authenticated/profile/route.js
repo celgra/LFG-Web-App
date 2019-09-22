@@ -5,6 +5,9 @@ export default class AuthenticatedProfileRoute extends Route {
     @service session;
 
     model() {
-        return this.store.find('users', this.session.data.authenticated.user.id);
+        return this.store.find(
+            'users', 
+            this.session.data.authenticated.user.id
+        );
     }
 }

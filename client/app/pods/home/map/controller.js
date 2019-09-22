@@ -8,6 +8,6 @@ export default class HomeMapController extends Controller {
         return {
             lat, 
             lng
-        }
+        };
     }
 }

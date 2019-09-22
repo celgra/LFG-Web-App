@@ -1,17 +1,20 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service'
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { task } from 'ember-concurrency';
-
-const editProfileForm = { bio: '' };
+import { create, Store } from '@microstates/ember';
 
 export default class AuthenticatedProfileController extends Controller {
     @service session;
     @service router;
 
-    isInEditMode = false;
-
-    editForm = { ...editProfileForm };
+    @computed
+    get isInEditMode() {
+        return Store(create(Boolean, false), next => this.set('isInEditMode', next));
+    }
+    set isInEditMode(state) {
+        return state;
+    }
 
     @task(function * (editForm) {
         try {
@@ -29,16 +32,9 @@ export default class AuthenticatedProfileController extends Controller {
         }
     }) saveProfileTask;
 
-    resetController() {
-        this.set('editForm', { ...editProfileForm });
-    }
-
     @action
     toggleEditMode() {
-        if (this.isInEditMode) {
-            this.resetController();
-        }
-        this.toggleProperty('isInEditMode');
+        this.isInEditMode.toggle();
     }
 
     @action
