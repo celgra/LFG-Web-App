@@ -21,6 +21,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "moment": "^2.24.0"
+    "moment": "^2.29.2"
   }
 }
